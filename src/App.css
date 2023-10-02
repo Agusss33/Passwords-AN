@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Bebas+Neue&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Bebas Neue', sans-serif;
+  user-select: none;
+  --text: #ffffff;
+ --background: #050529;
+ --primary: #edeb68;
+ --secondary: #040525;
+ --accent: #dbd81a;
+}
+html{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   height: 100%;
+   
+}
+body{
+  background-color: var(--background);
+  color: var(--text);
+  text-align: center;
+}
+
+#root{
+  border: 2px solid var(--accent);
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+h1{
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  background-color: var(--primary);
+  color: black;
+  border-radius: 0.5rem;
+}
+
+h2{
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  background-color: var(--primary);
+  color: black;
+  border-radius: 0.5rem;
+}
+p{
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+label{
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+input{
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  outline: none;
+  background-color: var(--accent);
+  color: var(--secondary);
+}
+.btn {
+  width: 150px;
+  height: 60px;
+  border: 3px solid var(--accent);
+  border-radius: 0.5em;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: white;
+  font-size: 1.2em;
+  font-weight: 550;
+}
+
+.btn:hover {
+  background: var(--secondary);
+  color: white;
+  font-size: 1.3em;
+}
+
+/* media query events  */
+
+@media (max-height: 790px) {
+  body{
+      zoom: 80%;
+  }
+}
+
+@media (max-height: 790px) {
+  body{
+      zoom: 75%;
+  }
+}
