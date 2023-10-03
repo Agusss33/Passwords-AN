@@ -4,24 +4,25 @@ import './App.css';
 function App() {
   const [password, setPassword] = useState('');
   const [length, setLength] = useState(12);
+  const [requiredChar, setRequiredChar] = useState('');
   const [includeUppercase, setIncludeUppercase] = useState(true);
   const [includeLowercase, setIncludeLowercase] = useState(true);
   const [includeNumbers, setIncludeNumbers] = useState(true);
   const [includeSpecialChars, setIncludeSpecialChars] = useState(true);
 
   const generatePassword = () => {
-    const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
-    const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const numberChars = '0123456789';
-    const specialChars = '!@#$%^&*()_+[]{}|;:,.<>?';
+    const minusculas = "abcdefghijklmnopqrstuvwxyz";
+    const mayus = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const numeros = "0123456789";
+    const caracteres = "!@#$%^&*()_+[]{}|;:,.<>?";
 
     let validChars = '';
-    if (includeLowercase) validChars += lowercaseChars;
-    if (includeUppercase) validChars += uppercaseChars;
-    if (includeNumbers) validChars += numberChars;
-    if (includeSpecialChars) validChars += specialChars;
+    if (includeLowercase) validChars += minusculas;
+    if (includeUppercase) validChars += mayus;
+    if (includeNumbers) validChars += numeros;
+    if (includeSpecialChars) validChars += caracteres;
 
-    let newPassword = '';
+    let newPassword= `${requiredChar}`;
     for (let i = 0; i < length; i++) {
       const randomIndex = Math.floor(Math.random() * validChars.length);
       newPassword += validChars[randomIndex];
@@ -30,14 +31,14 @@ function App() {
     setPassword(newPassword);
   };
 
-  const copyToClipboard = () => {
+  const copy= () => {
     const textarea = document.createElement('textarea');
     textarea.value = password;
     document.body.appendChild(textarea);
     textarea.select();
     document.execCommand('copy');
     document.body.removeChild(textarea);
-    alert('Contraseña copiada al portapapeles');
+    alert('Contraseña copiada');
   };
 
   return (
@@ -50,11 +51,11 @@ function App() {
           value={length}
           onChange={(e) => setLength(e.target.value)}
           min={12}
-          max={50}
+          max={0}
         />
       </div>
       <div>
-        <label>Incluir Mayúsculas:</label>
+        <label>Mayúsculas:</label>
         <input
           type="checkbox"
           checked={includeUppercase}
@@ -62,7 +63,7 @@ function App() {
         />
       </div>
       <div>
-        <label>Incluir Minúsculas:</label>
+        <label>Minúsculas:</label>
         <input
           type="checkbox"
           checked={includeLowercase}
@@ -70,7 +71,7 @@ function App() {
         />
       </div>
       <div>
-        <label>Incluir Números:</label>
+        <label>Números:</label>
         <input
           type="checkbox"
           checked={includeNumbers}
@@ -78,19 +79,28 @@ function App() {
         />
       </div>
       <div>
-        <label>Incluir Caracteres Especiales:</label>
+        <label>Caracteres Especiales:</label>
         <input
           type="checkbox"
           checked={includeSpecialChars}
           onChange={() => setIncludeSpecialChars(!includeSpecialChars)}
         />
       </div>
-      <button className='btn' onClick={generatePassword}>Generar Contraseña</button>
+      <div>
+        <label>Carácter Opcional:</label>
+        <input
+          type="text"
+          value={requiredChar}
+          onChange={(e) => setRequiredChar(e.target.value)}
+          maxLength={1}
+        />
+      </div>
+      <button className='btn' onClick={() => (length >= 12 && length <= 30 ? generatePassword() : alert("La contraseña tiene que estar entre 12 hasta 30 caracteres"))}>Generar Contraseña</button>
       {password && (
         <div>
           <h2>Contraseña Generada</h2>
           <p>{password}</p>
-          <button className='btn' onClick={copyToClipboard}>Copiar al Portapapeles</button>
+          <button className='btn' onClick={copy}>Copiar al Portapapeles</button>
         </div>
       )}
     </div>

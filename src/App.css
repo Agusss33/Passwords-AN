@@ -98,8 +98,8 @@ input{
   }
 }
 
-@media (max-height: 790px) {
+@media (max-height: 688px) {
   body{
-      zoom: 75%;
+      zoom: 70%;
   }
 }
