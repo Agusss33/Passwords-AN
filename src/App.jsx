@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 function App() {
   const [password, setPassword] = useState('');
@@ -97,10 +99,14 @@ function App() {
       </div>
       <button className='btn' onClick={() => (length >= 12 && length <= 30 ? generatePassword() : alert("La contraseña tiene que estar entre 12 hasta 30 caracteres"))}>Generar Contraseña</button>
       {password && (
-        <div>
+        <div className='password-generada'>
           <h2>Contraseña Generada</h2>
           <p>{password}</p>
           <button className='btn' onClick={copy}>Copiar al Portapapeles</button>
+          <label>{(password.length === 12) ? "Insegura" :
+                        (password.length > 12 && password.length <= 15) ? "Segura" :
+                        (password.length > 15) ? "Muy segura" :
+                        "Null"}</label>
         </div>
       )}
     </div>

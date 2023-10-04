@@ -90,7 +90,20 @@ input{
   font-size: 1.3em;
 }
 
+.password-generada{
+   display: flex;
+   flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 /* media query events  */
+@media  (max-height: 840px) {
+  body{
+      zoom: 85%;
+  }
+}
+  
 
 @media (max-height: 790px) {
   body{
