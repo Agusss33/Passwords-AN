@@ -24,13 +24,21 @@ function App() {
     if (includeNumbers) validChars += numeros;
     if (includeSpecialChars) validChars += caracteres;
 
-    let newPassword= `${requiredChar}`;
+
+
+    let newPassword= "";
     for (let i = 0; i < length; i++) {
       const randomIndex = Math.floor(Math.random() * validChars.length);
       newPassword += validChars[randomIndex];
     }
 
-    setPassword(newPassword);
+    if(requiredChar === "")
+    {
+      setPassword(newPassword);
+    }else
+    {
+      setPassword(newPassword = requiredChar + newPassword.substring(1));
+    }
   };
 
   const copy= () => {
