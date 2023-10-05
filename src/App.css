@@ -26,7 +26,8 @@ body{
 }
 
 #root{
-  border: 2px solid var(--accent);
+  border: 1px solid var(--accent);
+  box-shadow: 0.5em 0.5em 0.5em var(--accent);
   padding-left: 1em;
   padding-right: 1em;
   padding-top: 1em;

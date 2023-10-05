@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Swal from "sweetalert2";
 
 
 function App() {
@@ -25,7 +25,6 @@ function App() {
     if (includeSpecialChars) validChars += caracteres;
 
 
-
     let newPassword= "";
     for (let i = 0; i < length; i++) {
       const randomIndex = Math.floor(Math.random() * validChars.length);
@@ -39,6 +38,15 @@ function App() {
     {
       setPassword(newPassword = requiredChar + newPassword.substring(1));
     }
+
+    if (validChars === "") {
+      Swal.fire({
+        text: "Selecciona al menos una opción (mayúsculas, minúsculas, números o caracteres especiales)",
+        confirmButtonColor: "#050529",
+        });
+      setPassword('');
+      return; 
+    }
   };
 
   const copy= () => {
@@ -48,7 +56,12 @@ function App() {
     textarea.select();
     document.execCommand('copy');
     document.body.removeChild(textarea);
-    alert('Contraseña copiada');
+    Swal.fire({
+      text: "Contraseña copiada al portapapeles",
+      timer: 2000,
+      showCancelButton: false,
+      showConfirmButton: false,
+      });
   };
 
   return (
@@ -105,7 +118,10 @@ function App() {
           maxLength={1}
         />
       </div>
-      <button className='btn' onClick={() => (length >= 12 && length <= 30 ? generatePassword() : alert("La contraseña tiene que estar entre 12 hasta 30 caracteres"))}>Generar Contraseña</button>
+      <button className='btn' onClick={() => (length >= 12 && length <= 30 ? generatePassword() : Swal.fire({
+        text: "La contraseña debe tener entre 12 y 30 caracteres",
+        confirmButtonColor: "#050529",
+        }))}>Generar</button>
       {password && (
         <div className='password-generada'>
           <h2>Contraseña Generada</h2>
