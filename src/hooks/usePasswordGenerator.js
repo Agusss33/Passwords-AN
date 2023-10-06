@@ -32,12 +32,12 @@ function generatePassword(
       confirmButtonColor: "#050529",
     });
     newPassword = "";
+    requiredChar = "";
   }
 
   if (requiredChar !== "") {
     newPassword = requiredChar + newPassword.substring(1);
   }
-
   return newPassword;
 }
 
