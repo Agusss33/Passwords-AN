@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import './App.css';
 import Swal from "sweetalert2";
 import Options from './components/Options.jsx';
@@ -9,8 +9,9 @@ import Copy from './components/Copy';
 import usePasswordGenerator from './hooks/usePasswordGenerator';
 
 
+
 function App() {
-  const [length, setLength] = useState(12);
+  const [length, setLength] = useState("");
   const [requiredChar, setRequiredChar] = useState('');
   const [includeUppercase, setIncludeUppercase] = useState(true);
   const [includeLowercase, setIncludeLowercase] = useState(true);
@@ -22,49 +23,49 @@ function App() {
     <div className="App">
       <h1>Generador de Contraseñas</h1>
       <div>
-        <label>Longitud:</label>
+        <h3>Longitud:</h3>
         <input
           type="number"
           value={length}
           onChange={(e) => setLength(e.target.value)}
-          min={12}
-          max={0}
+          placeholder='Debe tener de 4 a 32 caracteres'
+          id={1}
         />
       </div>
-      <div>
-        <label>Mayúsculas:</label>
-        <Options checked={includeUppercase} onChange={()=>setIncludeUppercase(!includeUppercase)} />
+      <div className='checks'>
+        <h3>Mayúsculas:</h3>
+        <Options checked={includeUppercase} onChange={()=>setIncludeUppercase(!includeUppercase)}/>
       </div>
-      <div>
-        <label>Minúsculas:</label>
-        <Options checked={includeLowercase} onChange={()=>setIncludeLowercase(!includeLowercase)} />
+      <div className='checks'>
+        <h3>Minúsculas:</h3>
+        <Options checked={includeLowercase} onChange={()=>setIncludeLowercase(!includeLowercase)}/>
       </div>
-      <div>
-        <label>Números:</label>
-        <Options checked={includeNumbers} onChange={()=>setIncludeNumbers(!includeNumbers)} />
+      <div className='checks'>
+        <h3>Números:</h3>
+        <Options checked={includeNumbers} onChange={()=>setIncludeNumbers(!includeNumbers)}/>
       </div>
-      <div>
-        <label>Caracteres Especiales:</label>
+      <div className='checks'>
+        <h3>Caracteres Especiales:</h3>
         <Options
           checked={includeSpecialChars}
           onChange={()=>setIncludeSpecialChars(!includeSpecialChars)}/>
       </div>
       <div>
-        <label>Carácter Opcional:</label>
+        <h3>Carácter Opcional:</h3>
         <Caracter value={requiredChar} onChange={(e)=>setRequiredChar(e.target.value)} />
       </div>
-      <Button text='Generar' onClick={() => (length >= 12 && length <= 30 ? generateNewPassword(length, includeUppercase, includeLowercase, includeNumbers, includeSpecialChars, requiredChar) : Swal.fire({
-        text: "La contraseña debe tener entre 12 y 30 caracteres",
+      <Button text='Generar' onClick={() => (length >= 4 && length <= 32 ? generateNewPassword(length, includeUppercase, includeLowercase, includeNumbers, includeSpecialChars, requiredChar) : Swal.fire({
+        text: "La contraseña debe tener entre 4 y 32 caracteres",
         confirmButtonColor: "#050529",
         }))} />
       {password && (
         <div className='password-generada'>
           <Password value={password} />
           <Copy password={password} />
-          <label>{(password.length === 12) ? "Insegura" :
-                  (password.length > 12 && password.length <= 15) ? "Segura" :
+          <h3>{(password.length === 4) ? "Insegura" :
+                  (password.length > 4 && password.length <= 15) ? "Segura" :
                     (password.length > 15) ? "Muy segura" :
-                     "Null"}</label>
+                     "Null"}</h3>
         </div>
       )}
     </div>

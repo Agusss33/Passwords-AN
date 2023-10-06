@@ -17,7 +17,6 @@ html{
    align-items: center;
    flex-direction: column;
    height: 100%;
-   
 }
 body{
   background-color: var(--background);
@@ -41,6 +40,8 @@ h1{
   background-color: var(--primary);
   color: black;
   border-radius: 0.5rem;
+  padding-left: 0.1rem;
+  padding-right: 0.1rem;
 }
 
 h2{
@@ -58,9 +59,9 @@ p{
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
 }
-label{
+h3{
   font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+  font-weight: 300;
 }
 input{
   width: 100%;
@@ -73,6 +74,15 @@ input{
   background-color: var(--accent);
   color: var(--secondary);
 }
+
+.checks{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .btn {
   width: 150px;
   height: 60px;
@@ -115,5 +125,16 @@ input{
 @media (max-height: 688px) {
   body{
       zoom: 70%;
+  }
+}
+
+@media (max-width : 300px)
+{
+  p{
+    font-size: 1em;
+  }
+
+  #root{
+    width: 350px;
   }
 }

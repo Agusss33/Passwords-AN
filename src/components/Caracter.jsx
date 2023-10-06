@@ -1,4 +1,8 @@
+import { useId } from "react";
+
 function Caracter({ value, onChange }) {
+  const id = useId();
+
     return (
       <div>
         <input
@@ -6,6 +10,7 @@ function Caracter({ value, onChange }) {
           maxLength={1}
           value={value}
           onChange={onChange}
+          id={id}
         />
       </div>
     );
